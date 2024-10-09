@@ -982,7 +982,7 @@ complete      – документ и ресурсы загружены, про�
 <a href="#GraphQL" class="react__nav-link">GraphQL</a>
 <a href="#WebSockets" class="react__nav-link">WebSockets</a>
 <a href="#RPC" class="react__nav-link">RPC (gRPC, tRPC)</a>
-        </pre></article><article class="section-info"><img src="/images/js_browser/client-server/overview.jpg" alt="overview" style="width: 70%"></article><article class="section-info" id="internet_server"><b>internet / server / domain</b><pre>
+        </pre></article><article class="section-info"><img src="images/js_browser/client-server/overview.jpg" alt="overview" style="width: 70%"></article><article class="section-info" id="internet_server"><b>internet / server / domain</b><pre>
   <b>интернет</b> - очень большая сеть компьютеров, которые могут взаимодействовать друг с другом
 
   <b>сервер</b> - мощный вычислительный компьютер, постоянно подключенный к сети интернет
@@ -1025,7 +1025,7 @@ Control Protocol - протокол управления передачей) с 
 уровня (уровня приложений), работающий поверх TCP. Сам TCP работает поверх IP. В основном это
 означает, что если вы общаетесь по HTTP, вы делаете это с помощью TCP/IP.
 
-<img src="/images/js_browser/client-server/http.jpg" alt="http" style="width: 70%">
+<img src="images/js_browser/client-server/http.jpg" alt="http" style="width: 70%">
 
   Для сетевых запросов из JS есть широко известный термин <b>AJAX</b> - подход, позволяющий
 отправлять сетевые запросы и получать ответы в фоновом режиме (без перезагрузки страницы
@@ -1050,7 +1050,7 @@ Control Protocol - протокол управления передачей) с 
 
 * Передаваемые по сети данные в формате JSON-строки для обработки сначало нужно распарсить.
 
-<img src="/images/js_browser/http-status-codes.png" alt="http-status-codes" style="width: 65%;">
+<img src="images/js_browser/http-status-codes.png" alt="http-status-codes" style="width: 65%;">
         </pre></article><article class="section-info" id="REST"><b>REST</b><pre>
   <b>REST</b> — (Representational State Transfer) <b>архитектурный стиль</b>, который сообщает,
          как наиболее эффективно общаться клиенту и серверу по HTTP протоколу.
@@ -1107,7 +1107,7 @@ Control Protocol - протокол управления передачей) с 
 
   <b>Для описания SOAP сервисов используется WSDL (Web Services Description Language)
 язык</b> описания веб-сервисов и доступа к ним, основанный на языке XML:
-<img src="/images/js_browser/client-server/WSDL.jpg" alt="WSDL" style="width: 55%;">
+<img src="images/js_browser/client-server/WSDL.jpg" alt="WSDL" style="width: 55%;">
   <b>В WSDL нет Endpoint'ов, а есть операции</b>, например операция getBook с инпутом (получаем)
 и аутпутом (отдаем).
 
@@ -1118,12 +1118,12 @@ Control Protocol - протокол управления передачей) с 
 - SOAP, в отличае от REST архитектуры обладает определенной строгостью - сообщения
   в SOAP обладают определенной структурой и состоят из 4 частей
   (3 обязательных: Envelope, Header, Body и одна опциональная)
-<img src="/images/js_browser/client-server/Soap-message.jpg" alt="Soap-message" style="width: 85%;">
+<img src="images/js_browser/client-server/Soap-message.jpg" alt="Soap-message" style="width: 85%;">
 
 
 * на сервере может быть реализация REST и SOAP одновременно:
 
-<img src="/images/js_browser/client-server/Soap-and-REST.jpg" alt="Soap-and-REST" style="width: 65%;">
+<img src="images/js_browser/client-server/Soap-and-REST.jpg" alt="Soap-and-REST" style="width: 65%;">
         </pre></article><article class="section-info" id="GraphQL"><b>GraphQL</b><pre>
   <b>GraphQL</b> — это язык запросов для общение между сервером и клиентом, а также
 это еще и среда для выполнения этих запросов. Является более гибкой и продвинутой
@@ -1539,7 +1539,7 @@ mutation {
 - чатов
 - графиков (для быстрого показа изменений, например биржевые графики)
 
-<img src="/images/js_browser/client-server/WebSocket.jpg" alt="WebSocket" style="width: 70%;">
+<img src="images/js_browser/client-server/WebSocket.jpg" alt="WebSocket" style="width: 70%;">
         </pre></article><article class="section-info" id="RPC"><b>RPC (gRPC, tRPC)</b><pre>
   <b>RPC (remote procedure call)</b> - удаленный вызов процедур (методов на сервере)
 на стороне клиента.
@@ -1549,7 +1549,7 @@ mutation {
 происходит так, будто бы клиент сам вызвал эту процедуру и сам выполнил какое то
 действие.
 
-<img src="/images/js_browser/client-server/RPC.jpg" alt="RPC">
+<img src="images/js_browser/client-server/RPC.jpg" alt="RPC">
 
 
 
@@ -1561,17 +1561,17 @@ mutation {
 другом по gRPC и делают это очень быстро за счет преимуществ HTTP2 (на 15% быстрей
 чем HTTP1 + в HTTP2 реализованы быстрые потоки данных - стримминг) и других технологий.
 
-<img src="/images/js_browser/client-server/gRPC.jpg" alt="gRPC" style="width: 80%;">
+<img src="images/js_browser/client-server/gRPC.jpg" alt="gRPC" style="width: 80%;">
 
 Преимущества gRPC:
-<img src="/images/js_browser/client-server/gRPC-advantages.jpg" alt="gRPC-advantages" style="width: 80%;">
+<img src="images/js_browser/client-server/gRPC-advantages.jpg" alt="gRPC-advantages" style="width: 80%;">
 
   Пример <b>.proto файла - файл с сервисами (указываем что на входе/выходе, какие
 процедуры есть внутри сервиса)</b>, прогнав который с помощью специального компилятора
 <b>protoc</b> можно нагенерить код для разных языков програмирования.
   Для микросервисов это супер удобно, т.к. каждый микросервис может писаться на
 своем языке програмирования.
-<img src="/images/js_browser/client-server/gRPC-proto.jpg" alt="gRPC-proto-file">
+<img src="images/js_browser/client-server/gRPC-proto.jpg" alt="gRPC-proto-file">
         </pre></article><ul class="section-refs"><li><a href="https://www.youtube.com/watch?v=XaTwnKLQi4A&ab_channel=UlbiTV" target="_blank">Client - Server Theory ULBI</a></li></ul></div></section><!--network / requests--><section class="section" id="network"><div class="section-container"><h2 class="section-title">URL / network requests</h2><article class="section-info"><pre>
 <a href="#url" class="react__nav-link">URL, URI methods</a>
 <a href="#punycode" class="react__nav-link">ASCII / Punycode</a>
@@ -2068,7 +2068,7 @@ Set-Cookie: name=value. Браузер запоминает строку name=va
 
                                  <b>виды cookies:</b>
 
-<img src="/images/js_browser/cookies.png" alt="cookies">
+<img src="images/js_browser/cookies.png" alt="cookies">
 - сессионые (temporary) - они существуют только во время посещения сайта и
 удаляются только когда закрою браузер. В отличие от других типов cookie,
 сессионные cookie не имеют истечения срока действия.
