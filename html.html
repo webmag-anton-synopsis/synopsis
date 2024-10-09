@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1user-scalable=no"><title>HTML</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="index.css"></head><body data-name="html"><main class="sections-wrapper"><!-- basis --><section class="section" id="basis"><div class="section-container"><h2 class="section-title">basis</h2><article class="section-info"><pre>
+          <code class="language-html">
+&lt;!-- что бы браузер понимал, что используется именно HTML 5. Не является HTML-элементом --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang='en'&gt;
+&lt;head&gt;   &lt;!-- contains metadata about the page and links to external resources --&gt;
+  &lt;meta charset='UTF-8'&gt;   &lt;!-- Кодировка в документе --&gt;
+  &lt;meta http-equiv='X-UA-Compatible' content='IE=edge'&gt;  &lt;!-- Use latest ver of IE (edge) --&gt;
+  &lt;!-- For mobile devices. Если у сайта есть респонсив дизайн, то чтобы на устройстве
+  корректно происходило перестроение нужен этот meta-тег. Если респонсив дизайна нет,
+  то этот тег не нужен.  user-scalable=no (обычно не ставят) - запрещает зумить страницу --&gt;
+  &lt;meta name='viewport' content='width=device-width, initial-scale=1.0 user-scalable=no'&gt;
+
+  &lt;title&gt;HTML&lt;/title&gt;
+
+  &lt;!-- favicon --&gt;
+  &lt;link rel='shortcut icon' href='../favicon.ico' type='image/x-icon'&gt;
+  &lt;!-- favicon for retina --&gt;
+  &lt;link rel='apple-touch-icon' href='apple-touch-icon.png'&gt;
+  &lt;link rel='apple-touch-icon' sizes='72x72' href='apple-touch-icon-72x72.png'&gt;
+  &lt;link rel='apple-touch-icon' sizes='114x114' href='apple-touch-icon-114x114.png'&gt;
+
+  &lt;!-- SEO --&gt;
+  &lt;meta name='description' content='Test web page'&gt;
+  &lt;meta name='keywords' content='html, css, javascript, developer'&gt;
+  &lt;meta name='author' content='Anton Byshok'&gt;
+
+  &lt;!-- external styles and embedded CSS (styles inside &lt;style&gt;...&lt;/style&gt;) --&gt;
+  &lt;link rel='stylesheet' type='text/css' href='html.css'&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--[if IE]&gt;
+&lt;p&gt;This text you can see only in Internet Explorer&lt;/p&gt;
+&lt;![endif]--&gt;
+
+&lt;!--[if lt IE 10]&gt;
+&lt;p&gt;You will see this text only in IE9 and more later version&lt;/p&gt;
+&lt;![endif]--&gt;
+
+  &lt;!-- semantic elements used for SEO and to increase the a11y (provide --&gt;
+  &lt;!-- more meanings to screan readers used by visually impaired users) --&gt;
+  &lt;header> / &lt;footer>   - дочерний элемент &lt;body>, но может быть и внутри &lt;article>
+  &lt;nav>                 - может быть и несколько навигаций: главная (по сайту)
+                          и навигация к элементам на странице
+  &lt;section>             - повторяющаяся инф-я на сайте. Лучше что бы содержла &lt;h1-h6>.
+                          Может быть и внутри &lt;body> и внутри &lt;main>, &lt;article>...
+  &lt;article>             - должна содержать &lt;h1-h6>. Может содержать &lt;header> (с
+                          &lt;h1-h6> внутри), &lt;section> и &lt;footer>
+  &lt;main  role='main'>   - по сути секция с главным основным контентом на сайте,
+                          используется 1 раз.
+                          Не может быть дочерним элементом &lt;section> и др. тегов
+  &lt;aside>               - сайдбар сайта
+          </code>
+        </pre></article><ul class="section-refs"><li><a href="https://github.com/Konfuze/HEAD" target="_blank">документация по всему в &lt;head&gt</a></li><li><a href="https://frontend-stuff.com/blog/meta-tags/" target="_blank">основные мета-теги для социальных сетей</a></li></ul></div></section><!--Images--><section class="section" id="images"><div class="section-container"><h2 class="section-title">images</h2><article class="section-info"><b>lazyloading</b><pre>
+          <code>
+- подключаем lazyload.js
+- инициализируем по определенному классу изображений (например .lazyload)
+- картинкам указываем data-original с путями к оригиналам и в src - заглушку
+  (лучше кодированую в base64 - https://webdesign-master.ru/services/lazy/).
+  Картинкам нужно указать width/height, что бы не прыгали при отрисовке.
+          </code>
+        </pre></article><article class="section-info"><b>responsive image</b><pre>
+          <code class="language-html">
+&lt;picture&gt;
+  &lt;source media='(min-width: 1024px)' srcset='images/600x600.webp' type='image/webp'&gt;
+  &lt;source media='(max-width: 1023px)' srcset='images/image-1x.webp images/image-2x.webp 2x'
+          type='image/webp'&gt;
+  &lt;img src='images/image-1x.png' alt='Just image'&gt;
+&lt;/picture&gt;
+          </code>
+        </pre><pre>
+  source в зависимости от ширины экрана (аттрибут media) загружает ту или
+иную картинку.
+  Это удобно, что бы для моб версии не грузить тяжелую картинку или, например,
+если нужна другая картинка для моб. Или, например, для fallback'a для webp (хотя
+возможно и обычный &lt;img&gt; c srcset для этого сгодится, где src будет fallback'ом
+если не поддерживается webp формат из srcset).
+  Если браузер не поддерживает MIME-тип из аттрибута type (например webp) или
+нет совпадения с media-запросом, то вместо &lt;source&gt; берется следующий &lt;source&gt;
+и так далее. Если ни один &lt;source&gt; не подошел - берется &lt;img&gt;
+        </pre></article><!-- Responsive image --><picture><!--  --><source media="(min-width: 1024px)" srcset="images/html/600x600.webp" type="image/webp"><!-- 2x - для ретины --><source media="(max-width: 1023px)" srcset="images/html/image-1x.webp images/image-2x.webp 2x" type="image/webp"><img src="images/html/image-1x.png" alt="Just image"><!-- если ни один source не подошел --></picture><article class="section-info"><b>Image with semantic description (связь картинки с описанием для SEO)</b><pre>
+          <code class="language-html">
+&lt;figure&gt;
+  &lt;img src="https://picsum.photos/300/300" alt="Just image"/&gt;
+  &lt;figcaption&gt;It is a simple description for a picture above&lt;/figcaption&gt;
+&lt;/figure&gt;
+          </code>
+        </pre></article><!-- Image with semantic description (связь картинки с описанием для SEO) --><figure><!-- может быть несколько картинок --> <img src="https://picsum.photos/300/300" alt="Just image"><figcaption>It is a simple description for a picture above</figcaption></figure><article class="section-info"><b>высота картинки в % относительно ширины</b><pre>
+Задаем блоку высоту в % относительно ширины с помощью padding-bottom.
+И внутри блока позиционируем картинку на всю высоту/ширину блока
+        </pre></article><!-- высота картинки в % относительно ширины --><div class="card"><div class="card__image"><img src="https://picsum.photos/800/400"></div></div></div></section><!-- forms --><section class="section" id="forms"><div class="section-container"><h2 class="section-title">forms</h2><article class="section-info"><img src="images/html/form_elements.png" alt="form elements" style="width: 60%;"><pre>
+* &lt;input>, &lt;button> могут быть валидно использованы без &lt;form>.
+
+
+  Значение атрибута <b>action</b> у &lt;form> — это URL-адрес программы обработки данных, в которую будут
+отправлены данные.
+
+  Значением атрибута <b>method</b> у &lt;form> могут быть только методы <b>GET и POST</b>.
+
+  Каждый &lt;input> также должно иметь атрибут <b>name</b>. Он предоставляет ключ, с которым можно
+связать данные в базе данных. Например, если пользователь вводит данные 'William Preston' в input
+с name='full_name', то данные будут сохранены в базе данных как {"full_name" : "William Preston"}.
+
+  В отличие от элемента &lt;input>, элемент <b>&lt;textarea></b> имеет закрывающий тег. Когда вы хотите
+предварительно заполнить &lt;textarea> данными, вы помещаете его между открывающим и закрывающим
+тегами, вместо использования атрибута value, как вы делаете для &lt;input type='text'>.
+
+  &lt;input <b>type='checkbox'</b> name='accept_terms' <b>value='yes'</b> checked>
+По умолчанию данные, отправляемые на сервер из нажатого checkbox'a, имеют значение <b>on</b>.
+Если вы присваиваете checkbox'у атрибут value='yes', то 'yes' будет отправлено на сервер
+вместо on: {"accept_terms" : "yes"}.
+Если атрибут value был опущен, то значение по умолчанию для ненажатого checkbox'а будет <b>no</b>,
+т.е. отправленные данные будут {"accept_terms" : "no"}.
+
+  Группа радиокнопок (&lt;input <b>type='radio'</b>>) определяется путем присвоения каждой из радиокнопок
+в группе атрибута <b>name</b> с одинаковым значением. Радиокнопкам также необходим атрибут <b>value</b>,
+значение которого представляет собой данные, отправляемые на сервер.
+
+  Элемент <b>&lt;select></b> должен иметь атрибут <b>name</b>, чтобы данные имели идентификатор для отправки в
+базу данных с выбранным значением.
+Если атрибут <b>value</b> отсутствует в элементе &lt;option>, то значение будет взято из текстового
+содержимого элемента option.
+
+  Элемент <b>&lt;datalist> работает в сочетании с элементом &lt;input></b>, чтобы предоставить пользователю
+возможные варианты, при этом давая ему возможность вводить собственное значение в поле ввода.
+Элемент <b>datalist должен иметь id</b>. И это значение id должно быть равно аттрибуту <b>list</b> у &lt;input>.
+Атрибут name помещается в элемент &lt;input>:
+        </pre><pre>
+          <code class="language-html">
+&lt;label for='choice'>What's your favourite ice cream flavor?&lt;/label>
+&lt;input list='ice-cream-flavors' id='choice' name='ice-cream-choice' type='text'/>
+&lt;datalist id='ice-cream-flavors'>
+  &lt;option value='Chocolate'>&lt;/option>
+  &lt;option value='Coconut'>&lt;/option>
+  &lt;option value='Mint'>&lt;/option>
+&lt;/datalist>
+          </code>
+        </pre><pre>
+
+  Атрибуты <b>type='submit' и type='reset'</b> можно применять к элементу &lt;input> или &lt;button> 
+в форме. Разница между этими двумя элементами заключается в том, что, поскольку элемент 
+&lt;button type='submit'> имеет закрывающий тег, то можно помещать внутрь него другие элементы.
+
+  Aтрибут <b>required</b> можно добавить к любому элементу ввода формы: &lt;input>, &lt;textarea> и &lt;select>.
+Для группы радиокнопок (некоторые &lt;input type='radio'> с одинаковыми значениямии name) мы можем
+задать required только для какого то одного &lt;input type='radio'>.
+  С помощью HTML можно сделать один &lt;input <b>type='checkbox'</b>> обязательным, добавив required.
+Однако, если вы хотите, чтобы ваши пользователи выбирали хотя бы один checkbox из группы
+checkbox'ов, то нужен JS.
+        </pre></article></div></section><!--A11y--><section class="section" id="a11y"><div class="section-container"><h2 class="section-title">a11y</h2><article class="section-info"><pre>
+
+  <b>ARIA stands for Accessible Rich Internet Applications</b> and is a set of attributes
+that define ways to make web content and web applications more accessible to people
+with disabilities.
+  Например если в ссылку на соц. сеть вложена картинка, то она не будет видна слепым
+людям, полагающимся только на <b>скринридер</b> ⇒ нужно использовать <b>aria-оттрибуты</b>.
+
+
+  Links that open in a separate tab without informing a screenreader user can be
+confusing too.
+  The value for an <b>aria-label</b> is a string of text that labels the purpose and behaviour
+of the element. For example:
+        </pre><pre>
+          <code class="language-html">
+&lt;a
+  href='https://twitter.com/CodersInstitute'
+  target='_blank'
+  aria-label='Go to our twitter page (opens in new tab)' 
+>
+    Twitter
+&lt;/a>
+          </code>
+        </pre><pre>
+
+
+  For images, we have already talked about using the <b>alt</b> attribute on an &lt;img> element,
+to describe the image. Without an alt attribute, a screenreader will read out the name
+of the image file that is being loaded, which is rarely descriptive enough.
+
+  Suppose you use a <b>background-image</b> with css, and the image is an integral part of the
+information you are providing to the user. In that case, an <b>aria-label</b> attribute should
+be added to the element to describe the image. The reason for this is a background image
+is not applied using an img element, so there would be no alt attribute available to it
+in this case.
+
+
+  The <b>aria-labelledby</b> attribute identifies the element (or elements) that labels the
+element it is applied to.
+        </pre><pre>
+The following example uses aria-labelledby to provide an accessible
+name for a checkbox input by using the text content of a sibling element:
+          <code class="language-html">
+&lt;span
+  role='checkbox'
+  aria-checked='false'
+  tabindex='0'
+  aria-labelledby='tac'>&lt;/span>
+&lt;span id='tac'>I agree to the Terms and Conditions&lt;/span>
+          </code>
+        </pre><pre>
+
+Better to add for SEO and Validator (in css - display: none):
+&lt;h2 class='hidden-heading'>Gallery&lt;/h2>
+        </pre></article></div></section><!--Misc--><section class="section" id="misc"><div class="section-container"><h2 class="section-title">Misc</h2><article class="section-info"><pre>
+  в <b>&lt;iframe></b> при одновременном использовании атрибутов src и srcdoc,
+атрибут src игнорируется.
+  srcdoc позволяет установить содержимое фрейма непосредственно в атрибуте.
+Значение должно иметь корректный синтаксис HTML.
+  В целях обеспечения a11y рекомендуется присвоить iframe атрибут title.
+
+
+
+<b>&lt;audio / video</b> src='myVideo.mp4' width='500' autoplay muted loop controls>
+  &lt;p>Your browser doesn't support HTML5 audio&lt;/p>
+&lt;/audio>
+  Считается плохим пользовательским опытом автовоспроизведение видео со звуком.
+Поэтому, если вы используете свойство autoplay, также рекомендуется использовать 
+muted.
+  Браузеры не все поддерживают одни и те же типы файлов для видео, поэтому, если вы хотите
+быть уверены, что ваш видеофайл будет воспроизводиться на всех из них, вы можете указать
+несколько источников внутри вложенных элементов &lt;source>.
+При вложении в элемент &lt;video> элемент &lt;source> принимает два атрибута: src и type, который
+определяет тип видеофайла. Значение type для видео: video/webm, video/mp4 или video/ogg.
+
+
+
+  <b>anchor (якорь)</b> - это и ссылка c # в href и название после символа # в
+атрибуте href, который указывает на элемент (id) на странице.
+
+             распространенные типы 'rel' для &lt;a rel='...'&gt;&lt;/a&gt;:
+nofollow:            для неодобренного документа, например платной ссылки
+noopener:            предотвращает потенциально вредоносное поведение из целевого
+                     документа, что полезно для ссылок на социальные сети
+help:                for a link to a help document
+next / prev:         for the next or previous document in a selection
+
+  редирект - переход при клике на ссылку
+
+&lt;a href="test.txt" download&gt;download&lt;/a&gt; - загрузка файла с помощью аттрибута <b>download</b>
+
+  в ссылке может указываться и тема с телом, например:
+&lt;a href='mailto:chriscoyier@gmail.com?subject=Important!&body=Hi'>Email Us&lt;/a>
+
+
+
+  можно png, svg... перегнать в <b>base-64</b>, чтобы не хранить отдельный svg файл и
+для экономии числа запросов.
+  Формат data: URL следующий: data:[&lt;MIME-type>][;charset=&lt;encoding>][;base64],&lt;data>
+  base64 можно использовать и в html и в css, например:
+&lt;img src='data:image/png;base64,iVB...'/>
+или
+background: '#000 url(\'data:image/svg+xml;base64,PD94bWwgd...\') no-repeat 8px center/16px 16px';
+
+
+
+&lt;details>
+    &lt;summary>Read more&lt;/summary>
+    &lt;p>full text…&lt;/p>
+&lt;/details>
+        </pre></article><ul class="section-refs"><li><a href="https://habr.com/ru/post/488516/" target="_blank">Все про iframe</a></li></ul></div></section></main><script src="index.js"></script></body></html>
